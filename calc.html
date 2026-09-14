@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery calculation</title>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            var x = 10;
+            var y = 4.5;
+
+            $("#result").append("<p>x + y = "+(x+y)+"</p>");
+            $("#result").append("<p>x - y = "+(x-y)+"</p>");
+            $("#result").append("<p>x * y = "+(x*y)+"</p>");
+            $("#result").append("<p>x / y = "+(x/y)+"</p>");
+
+        });
+    </script>
+</head>
+
+<body>
+
+    <h1>Calculations</h1>
+    <p>This example shows some basic math.</p>
+
+    <div id="result"></div>
+
+</body>
+</html>
