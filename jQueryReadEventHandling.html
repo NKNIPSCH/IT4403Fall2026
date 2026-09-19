@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 2 - jQuery Events</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+$(document).ready(function () {
+    //1. Hide or Show First Paragraph
+    $("#button1").click(function () {
+        if ($("#paragraph1").is(":visible")) {
+            $("#paragraph1").hide();
+            $("#button1").text("Show First Paragraph");
+        } else {
+            $("#paragraph1").show();
+            $("#button1").text("Hide First Paragraph");
+        }
+    });
+    //2. Hide or Show Second Paragraph
+    $("#button2").click(function () {
+        if ($("#paragraph2").is(":visible")) {
+            $("#paragraph2").hide();
+            $("#button2").text("Show Second Paragraph");
+        } else {
+            $("#paragraph2").show();
+            $("#button2").text("Hide Second Paragraph");
+        }
+    });
+});
+    </script>
+</head>
+<body>
+<header>
+    <h1>Exercise 2</h1>
+    <p>jQuery Events and Element Control</p>
+</header>
+<div class="container">
+    <a href="index.html" class="menu-button">Home</a>
+    <section class="section">
+        <h2>The Iran War and the Strait of Hormuz</h2>
+        <p id="paragraph1">For many years, military and energy experts have warned that a major conflict with Iran would likely threaten shipping through the Strait of Hormuz, one of the most important oil chokepoints in the world. Before the current conflict, roughly 20 percent of global oil shipments passed through the strait, with only limited pipeline capacity available to bypass it. The possibility that Iran could disrupt or close the waterway has therefore been a major risk in any confrontation with Iran. Previous presidents used a combination of sanctions, diplomacy, deterrence, and limited military actions rather than launching a large scale war against Iran, with the danger of regional escalation and disruption to global oil markets among the risks experts had to consider.</p>
+        <button id="button1">Hide First Paragraph</button>
+        <p id="paragraph2">That long known risk became a reality after the United States and Israel launched a major military campaign against Iran in February 2026. Iran responded by execrising control over the Strait of Hormuz, and commercial traffic through the waterway fell dramatically. Although some vessels have continued to cross and there have been attempts to reopen the strait, traffic remains WAY below its prewar level and the conflict has caused oil and fuel prices to spike. The situation demonstrates why the Strait of Hormuz has featured so prominently in warnings about a wider war with Iran: disrupting such a narrow shipping route can affect energy supplies and prices far beyond the Middle East.</p>
+        <button id="button2">Hide Second Paragraph</button>
+    </section>
+</div>
+<footer>
+    <p>IT 4403 - Advanced Web and Mobile Applications</p>
+</footer>
+</body>
+</html>

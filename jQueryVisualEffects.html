@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 5 - jQuery Effects</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //1. Hide Gallery
+            $("#hideButton").click(function () {
+                $("#cardGallery").hide();
+            });
+            //2. Show Gallery
+            $("#showButton").click(function () {
+                $("#cardGallery").show();
+            });
+            //3. Toggle Gallery
+            $("#toggleButton").click(function () {
+                $("#cardGallery").toggle();
+            });
+            //4. Fade Gallery
+            $("#fadeButton").click(function () {
+                $("#cardGallery").fadeToggle(800);
+            });
+            //5. Slide Gallery
+            $("#slideButton").click(function () {
+                $("#cardGallery").slideToggle(800);
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <h1>Exercise 5: jQuery Effects</h1>
+    <div>Sports Card Gallery</div>
+</header>
+<div class="container">
+    <a href="index.html" class="menu-button">Home</a>
+    <section class="section">
+        <h2>jQuery Effects Demonstration</h2>
+        <p>This page uses photographs from my personal sports card collection to demonstrate several built-in jQuery effects. Use the buttons below to hide, show, toggle, fade, or slide the card gallery.</p>
+        <div class="effect-controls">
+            <button id="hideButton">Hide</button>
+            <button id="showButton">Show</button>
+            <button id="toggleButton">Toggle</button>
+            <button id="fadeButton">Fade</button>
+            <button id="slideButton">Slide</button>
+        </div>
+        <div id="cardGallery" class="card-gallery">
+            <div class="card-photo">
+                <img src="images/9419.jpg" alt="Sports cards photograph 9419" width="240" height="181">
+                <p>Seattle Seahawks: Sam Darnold</p>
+            </div>
+            <div class="card-photo">
+                <img src="images/9413.jpg" alt="Sports cards photograph 9413" width="240" height="181">
+                <p>New York Jets: Garret Wilson</p>
+            </div>
+            <div class="card-photo">
+                <img src="images/9415.jpg" alt="Sports cards photograph 9415" width="240" height="181">
+                <p>New York Jets: Garret Wilson</p>
+            </div>
+            <div class="card-photo">
+                <img src="images/9429.jpg" alt="Sports cards photograph 9429" width="240" height="181">
+                <p>Chicago Bears: Caleb Williams</p>
+            </div>
+            <div class="card-photo">
+                <img src="images/9425.jpg" alt="Sports cards photograph 9425" width="240" height="181">
+                <p>New Orleans Saints: Tyler Shough</p>
+            </div>
+            <div class="card-photo">
+                <img src="images/9427.jpg" alt="Sports cards photograph 9427" width="240" height="181">
+                <p>Tampa Bay Buccaneers: Baker Mayfield</p>
+            </div>
+        </div>
+    </section>
+</div>
+<footer>
+    <div>IT 4403 - Advanced Web and Mobile Applications</div>
+</footer>
+</body>
+</html>

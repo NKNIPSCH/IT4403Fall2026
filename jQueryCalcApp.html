@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 6 - jQuery Calculator Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //1. Perform Calculation
+            $("#calculateButton").click(function () {
+                var firstValue = $("#number1").val().trim();
+                var secondValue = $("#number2").val().trim();
+                var operation = $("#operation").val();
+                var resultColor = $("#resultColor").val().trim();
+                $("#errorMessage").text("");
+                $("#result").text("");
+                //2. Check for Empty Fields
+                if (firstValue === "" || secondValue === "") {
+                    $("#errorMessage").text("Please enter a value in both number fields.");
+                    return;
+                }
+                //3. Check for Valid Numbers
+                var number1 = Number(firstValue);
+                var number2 = Number(secondValue);
+                if (isNaN(number1) || isNaN(number2)) {
+                    $("#errorMessage").text("Both entries must be valid numbers.");
+                    return;
+                }
+                //4. Prevent Division by Zero
+                if (operation === "/" && number2 === 0) {
+                    $("#errorMessage").text("Cannot divide by zero.");
+                    return;
+                }
+                //5. Calculate Result
+                var answer;
+                var symbol;
+                if (operation === "+") {
+                    answer = number1 + number2;
+                    symbol = "+";
+                } else if (operation === "-") {
+                    answer = number1 - number2;
+                    symbol = "-";
+                } else if (operation === "*") {
+                    answer = number1 * number2;
+                    symbol = "×";
+                } else if (operation === "/") {
+                    answer = number1 / number2;
+                    symbol = "÷";
+                }
+                //6. Display Result and Change Color
+                $("#result").text(number1 + " " + symbol + " " + number2 + " = " + answer);
+                if (resultColor !== "") {
+                    $("#result").css("color", resultColor);
+                } else {
+                    $("#result").css("color", "#241773");
+                }
+            });
+            //7. Clear Calculator
+            $("#clearButton").click(function () {
+                $("#number1").val("");
+                $("#number2").val("");
+                $("#operation").val("+");
+                $("#resultColor").val("");
+                $("#result").text("").css("color", "#241773");
+                $("#errorMessage").text("");
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <h1>Exercise 6: jQuery Calculator Application</h1>
+    <div>IT 4403 - Advanced Web and Mobile Applications</div>
+</header>
+<div class="container">
+    <a href="index.html" class="menu-button">Home</a>
+    <section class="section">
+        <h2>jQuery Calculator</h2>
+        <p>Enter two numbers, choose an operation, and select a color for the result.</p>
+        <div class="calculator">
+            <label for="number1">First Number</label>
+            <input type="text" id="number1" placeholder="Enter first number">
+            <label for="number2">Second Number</label>
+            <input type="text" id="number2" placeholder="Enter second number">
+            <label for="operation">Calculation</label>
+            <select id="operation">
+                <option value="+">Addition (+)</option>
+                <option value="-">Subtraction (-)</option>
+                <option value="*">Multiplication (*)</option>
+                <option value="/">Division (/)</option>
+            </select>
+            <label for="resultColor">Result Color</label>
+            <input type="text" id="resultColor" placeholder="Example: red, blue, green">
+            <div class="calculator-buttons">
+                <button id="calculateButton">Calculate</button>
+                <button id="clearButton">Clear</button>
+            </div>
+            <div id="errorMessage"></div>
+            <div id="result"></div>
+        </div>
+    </section>
+</div>
+<footer>
+    <div>IT 4403 - Advanced Web and Mobile Applications</div>
+</footer>
+</body>
+</html>

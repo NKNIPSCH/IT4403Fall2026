@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 4 - Table Selection and Event Handling</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //1. Select and Style Odd Rows
+            $("#salesTable tr:odd").css({
+                "background-color": "#eee8ff",
+                "font-style": "italic"
+            });
+            $("#salesTable tr:odd td").css("border-bottom", "2px solid #9e7c0c");
+            //2. Hide Odd Rows
+            $("#hideOddButton").click(function () {
+                $("#salesTable tr:odd").hide();
+            });
+            //3. Restore Rows
+            $("#restoreRowsButton").click(function () {
+                $("#salesTable tbody tr").show();
+            });
+            //4. Hide Clicked Row
+            $("#salesTable tbody tr").click(function () {
+                $(this).hide();
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <h1>Exercise 4: Table Selection and Event Handling</h1>
+    <div>August 2026 eBay Sales</div>
+</header>
+<div class="container">
+    <a href="index.html" class="menu-button">Home</a>
+    <section class="section">
+        <h2>August eBay Sales</h2>
+        <p>This table contains my eBay sales from August 2026. Odd rows are automatically styled using jQuery. Use the buttons below to hide or restore the odd rows. You can also click any individual sale to hide that row.</p>
+        <button id="hideOddButton">Hide Odd Rows</button>
+        <button id="restoreRowsButton">Restore Rows</button>
+        <div class="table-container">
+            <table id="salesTable">
+                <thead>
+                    <tr>
+                        <th>Actions</th>
+                        <th>Order</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                        <th>Total</th>
+                        <th>Date Sold</th>
+                        <th>Date Paid</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>400-Count Basketball Card Lot</td>
+                        <td>1</td>
+                        <td>$24.99</td>
+                        <td>$38.14</td>
+                        <td>Aug 31</td>
+                        <td>Aug 31</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>400-Count Basketball Card Lot</td>
+                        <td>1</td>
+                        <td>$20.00</td>
+                        <td>$32.46</td>
+                        <td>Aug 31</td>
+                        <td>Aug 31</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>250+ NHL Hockey Card Bulk Lot</td>
+                        <td>1</td>
+                        <td>$9.99</td>
+                        <td>$18.11</td>
+                        <td>Aug 28</td>
+                        <td>Aug 28</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>2</td>
+                        <td>$59.98</td>
+                        <td>$82.14</td>
+                        <td>Aug 28</td>
+                        <td>Aug 28</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 Card MLB Baseball Bulk Lot</td>
+                        <td>1</td>
+                        <td>$17.00</td>
+                        <td>$29.15</td>
+                        <td>Aug 27</td>
+                        <td>Aug 27</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>400-Count Basketball Card Lot</td>
+                        <td>1</td>
+                        <td>$17.00</td>
+                        <td>$29.15</td>
+                        <td>Aug 27</td>
+                        <td>Aug 27</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$25.00</td>
+                        <td>$37.79</td>
+                        <td>Aug 27</td>
+                        <td>Aug 27</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>Andrew Jackson Authentic Relic Card</td>
+                        <td>1</td>
+                        <td>$9.99</td>
+                        <td>$11.99</td>
+                        <td>Aug 25</td>
+                        <td>Aug 25</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$29.99</td>
+                        <td>$42.63</td>
+                        <td>Aug 25</td>
+                        <td>Aug 25</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$34.99</td>
+                        <td>$46.83</td>
+                        <td>Aug 23</td>
+                        <td>Aug 23</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$25.49</td>
+                        <td>$37.26</td>
+                        <td>Aug 23</td>
+                        <td>Aug 23</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$20.00</td>
+                        <td>$31.77</td>
+                        <td>Aug 22</td>
+                        <td>Aug 22</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$20.00</td>
+                        <td>$32.39</td>
+                        <td>Aug 22</td>
+                        <td>Aug 22</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$25.00</td>
+                        <td>$37.79</td>
+                        <td>Aug 22</td>
+                        <td>Aug 22</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$24.99</td>
+                        <td>$36.48</td>
+                        <td>Aug 19</td>
+                        <td>Aug 19</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$24.99</td>
+                        <td>$37.73</td>
+                        <td>Aug 19</td>
+                        <td>Aug 19</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$24.99</td>
+                        <td>$36.50</td>
+                        <td>Aug 18</td>
+                        <td>Aug 18</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$24.99</td>
+                        <td>$36.90</td>
+                        <td>Aug 18</td>
+                        <td>Aug 18</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$20.00</td>
+                        <td>$32.09</td>
+                        <td>Aug 13</td>
+                        <td>Aug 13</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$24.99</td>
+                        <td>$38.22</td>
+                        <td>Aug 13</td>
+                        <td>Aug 13</td>
+                    </tr>
+                    <tr>
+                        <td>Click row to hide</td>
+                        <td>500 NFL Football Card Lot</td>
+                        <td>1</td>
+                        <td>$20.00</td>
+                        <td>$31.19</td>
+                        <td>Aug 11</td>
+                        <td>Aug 11</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+<footer>
+    <div>IT 4403 - Advanced Web and Mobile Applications</div>
+</footer>
+</body>
+</html>

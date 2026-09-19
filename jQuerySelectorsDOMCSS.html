@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 3 - jQuery Selectors, DOM, and CSS</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //1. Read Heading Text
+            $("#readTextButton").click(function () {
+                alert($("#mainHeading").text());
+            });
+            //2. Read Paragraph HTML
+            $("#readHtmlButton").click(function () {
+                alert($("#paragraph1").html());
+            });
+            //3. Change Heading
+            $("#changeHeadingButton").click(function () {
+                $("#mainHeading").html("Exercise 3: Iran War and Regional Escalation");
+            });
+            //4. Read Link Attribute
+            $("#readAttributeButton").click(function () {
+                var linkAddress = $("#sourceLink").attr("href");
+                    window.open(linkAddress, "_blank");
+            });
+            //5. Change Link Attribute
+            $("#changeAttributeButton").click(function () {
+                $("#sourceLink").attr("href", "https://www.reuters.com/world/middle-east/");
+                $("#sourceLink").text("Reuters Middle East Coverage");
+            });
+            //6. Select Elements by Class
+            $("#classButton").click(function () {
+                $(".iran-point").css("background-color", "#eee8ff");
+            });
+            //7. Select Elements by Type
+            $("#elementButton").click(function () {
+                $("p").css("font-weight", "bold");
+            });
+            //8. Hide First Paragraph
+            $("#hideButton").click(function () {
+                $("#paragraph1").hide();
+            });
+            //9. Show First Paragraph
+            $("#showButton").click(function () {
+                $("#paragraph1").show();
+            });
+            //10. Toggle All Paragraphs
+            $("#toggleButton").click(function () {
+                $(".iran-point").toggle();
+            });
+            //11. Change CSS Properties
+            $("#changeCssButton").click(function () {
+                $("#paragraph2").css({
+                    "background-color": "#241773",
+                    "color": "white",
+                    "font-size": "22px",
+                    "border": "4px solid #9e7c0c",
+                    "width": "90%",
+                    "min-height": "120px",
+                    "padding": "15px"
+                });
+            });
+            //12. Reset CSS Properties
+            $("#resetCssButton").click(function () {
+                $("#paragraph2").css({
+                    "background-color": "",
+                    "color": "",
+                    "font-size": "",
+                    "border": "",
+                    "width": "",
+                    "min-height": "",
+                    "padding": ""
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <h1 id="mainHeading">Exercise 3: jQuery Selectors, DOM, and CSS</h1>
+    <div>IT 4403 - Advanced Web and Mobile Applications</div>
+</header>
+<div class="container">
+    <a href="index.html" class="menu-button">Home</a>
+    <section class="section">
+        <h2>The Iran War and Regional Escalation</h2>
+        <div class="demo-row">
+            <div class="demo-controls">
+                <h3>Controls</h3>
+                <button id="readTextButton">Read Heading Text</button>
+                <button id="readHtmlButton">Read Paragraph HTML</button>
+                <button id="changeHeadingButton">Change Heading</button>
+                <button id="readAttributeButton">Read Link Attribute</button>
+                <button id="changeAttributeButton">Change Link Attribute</button>
+                <button id="classButton">Select by Class</button>
+                <button id="elementButton">Select Paragraphs</button>
+                <button id="hideButton">Hide First Paragraph</button>
+                <button id="showButton">Show First Paragraph</button>
+                <button id="toggleButton">Toggle All Paragraphs</button>
+                <button id="changeCssButton">Change CSS</button>
+                <button id="resetCssButton">Reset CSS</button>
+                <h3>Source Link</h3>
+                <a id="sourceLink" href="https://www.eia.gov/international/content/analysis/special_topics/World_Oil_Transit_Chokepoints/" target="_blank">U.S. Energy Information Administration</a>
+            </div>
+            <div class="demo-content">
+                <p id="paragraph1" class="iran-point">Iran is often seen as the country that could quickly be overwhelmed by a much more technologically advanced military, but the current conflict has demonstrated the limits of that assumption. Iran possesses a large and diverse missile arsenal, including ballistic and cruise missiles capable of reaching targets throughout the region. Even after months of American and Israeli strikes against its military infrastructure, Iran has retained the ability to launch missiles and threaten military forces throughout the region. This does not make Iran militarily equal to the United States, but it does demonstrate that attacking the country was never likely to produce a quick or consequence-free victory. Iran's military is significantly more capable then Saddam's military in March of 2003. Even that military posed some trouble for our military, espesically once the IEDs started coming out. Iran has many thousands of drones which would be very effective aganist any ground forces.</p>
+                <p id="paragraph2" class="iran-point">The decision to launch a major military campaign against Iran also made Iranian counter attacks very predictable. On February 28, 2026, the United States and Israel began a large scale campaign targeting Iranian leadership, military forces, missile facilities, and other infrastructure. Iran responded with ballistic missiles and drones against Israel, American forces, and other targets in the region. Iran's later actions, including attacks on commercial shipping and neighboring countries, are a natural consequence of our attacks on them, but that does not erase the fact that the wider war followed major attacks inside Iran. A government responding militarily after its territory has been attacked should not have been an unexpected development.</p>
+                <p id="paragraph3" class="iran-point">The war has also shown why warnings about the Strait of Hormuz mattered so much. Before the conflict, approximately 20 percent of global oil moved through the strait, and there is not enough alternative pipeline capacity to replace all of that traffic. During 2026, oil moving through Hormuz fell dramatically as the conflict disrupted commercial shipping. Instead of remaining a contained military confrontation, the war has affected shipping routes, energy markets, neighboring countries, and consumers around the world. The economic consequences show how a regional military escalation can quickly become a global problem.</p>
+                <p id="paragraph4" class="iran-point">The strongest criticism of the American approach is not that that escalation has produced many of the consequences experts warned about. Iran remains capable of fighting back, the conflict has spread beyond Iran's borders, shipping has been disrupted, and energy prices have surged. Military power can destroy targets, but destroying targets is not the same thing as creating a stable political outcome. A more measured strategy focused on deterrence, diplomacy, and narrowly defined objectives could have reduced the risk of turning confrontation with Iran into a prolonged regional war.</p>
+                <h3>Main Points</h3>
+                <ul>
+                    <li>Iran maintains a significant missile and drone capability.</li>
+                    <li>Large scale attacks made Iranian military retaliation predictable.</li>
+                    <li>The Strait of Hormuz makes a regional conflict economically important worldwide.</li>
+                    <li>Military escalation can create consequences beyond the original military objectives.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+<footer>
+    <div>IT 4403 - Advanced Web and Mobile Applications</div>
+</footer>
+</body>
+</html>

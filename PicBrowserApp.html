@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 7 - Picture Browser Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //1. Image Data
+            var images = [
+                "images/9419.jpg",
+                "images/9413.jpg",
+                "images/9429.jpg",
+                "images/9425.jpg",
+                "images/9427.jpg"
+            ];
+            var captions = [
+                "Seattle Seahawks: Sam Darnold",
+                "New York Jets: Garret Wilson",
+                "Chicago Bears: Caleb Williams",
+                "New Orleans Saints: Tyler Shough",
+                "Tampa Bay Buccaneers: Baker Mayfield"
+            ];
+            var currentImage = 0;
+            //2. Display Image
+            function displayImage() {
+                $("#errorMessage").text("");
+                $("#browserImage").fadeOut(300, function () {
+                    $("#browserImage").attr("src", images[currentImage]);
+                    $("#browserImage").attr("alt", captions[currentImage]);
+                    $("#imageCaption").text(captions[currentImage]);
+                    $("#imageCounter").text("Image " + (currentImage + 1) + " of " + images.length);
+                    $("#browserImage").fadeIn(300);
+                });
+            }
+            //3. Next Image
+            $("#nextButton").click(function () {
+                currentImage++;
+                if (currentImage >= images.length) {
+                    currentImage = 0;
+                }
+                displayImage();
+            });
+            //4. Previous Image
+            $("#previousButton").click(function () {
+                currentImage--;
+                if (currentImage < 0) {
+                    currentImage = images.length - 1;
+                }
+                displayImage();
+            });
+            //5. Keyboard Navigation
+            $(document).keydown(function (event) {
+                if (event.key === "ArrowRight") {
+                    $("#nextButton").click();
+                }
+                if (event.key === "ArrowLeft") {
+                    $("#previousButton").click();
+                }
+            });
+            //6. Missing Image Error Handling
+            $("#browserImage").on("error", function () {
+                $("#errorMessage").text("The selected image could not be loaded.");
+                $(this).hide();
+            });
+            $("#browserImage").on("load", function () {
+                $(this).show();
+            });
+            displayImage();
+        });
+    </script>
+</head>
+<body>
+<header>
+    <h1>Exercise 7: Picture Browser Application</h1>
+    <div>Sports Card Collection</div>
+</header>
+<div class="container">
+    <a href="index.html" class="menu-button">Home</a>
+    <section class="section">
+        <h2>Sports Card Picture Browser</h2>
+        <p>This picture browser displays photographs from my personal sports card collection. Use the buttons or the left and right arrow keys to move through the images.</p>
+        <div class="picture-browser">
+            <div id="imageCounter">Image 1 of 5</div>
+            <img id="browserImage" src="images/9419.jpg" alt="Seattle Seahawks: Sam Darnold" width="640" height="482">
+            <h3 id="imageCaption">Seattle Seahawks: Sam Darnold</h3>
+            <div id="errorMessage"></div>
+            <div class="browser-controls">
+                <button id="previousButton">Previous</button>
+                <button id="nextButton">Next</button>
+            </div>
+            <p class="photo-credit">All photographs were taken by Niklas Knipschild and feature cards from my personal collection.</p>
+        </div>
+    </section>
+</div>
+<footer>
+    <div>IT 4403 - Advanced Web and Mobile Applications</div>
+</footer>
+</body>
+</html>

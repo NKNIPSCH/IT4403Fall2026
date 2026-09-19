@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1 - JavaScript and jQuery Comparison</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //1. Calculations and Output
+            var x = 10;
+            var y = 4.5;
+            $("#calculationResult").append("<p>x + y = " + (x + y) + "</p>");
+            $("#calculationResult").append("<p>x - y = " + (x - y) + "</p>");
+            $("#calculationResult").append("<p>x * y = " + (x * y) + "</p>");
+            $("#calculationResult").append("<p>x / y = " + (x / y) + "</p>");
+            //2. Loops
+            for (var i = 1; i <= 5; i++) {
+                $("#loopResult").append("<p>Loop number: " + i + "</p>");
+            }
+            //3. Functions
+            function addNumbers(a, b) {
+                return a + b;
+            }
+            var functionResult = addNumbers(8, 7);
+            $("#functionResult").text("The result of 8 + 7 using a function is: " + functionResult);
+            //4. DOM Access and Manipulation
+            $("#changeTextButton").click(function () {
+                $("#domText").text("The text has been changed using jQuery DOM manipulation.");
+            });
+            //5. Click Events
+            $("#clickButton").click(function () {
+                $("#clickResult").text("You clicked the button! The jQuery click event worked.");
+            });
+            //6. CSS Manipulation
+            $("#styleButton").click(function () {
+                $("#styleBox").css({
+                    "background-color": "lightblue",
+                    "font-weight": "bold",
+                    "font-size": "20px",
+                    "border": "3px solid black"
+                });
+            });
+            $("#resetStyleButton").click(function () {
+                $("#styleBox").css({
+                    "background-color": "",
+                    "font-weight": "",
+                    "font-size": "",
+                    "border": ""
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <h1>Exercise 1</h1>
+    <p>JavaScript and jQuery Comparison</p>
+</header>
+<div class="container">
+    <a href="index.html" class="menu-button">Home</a>
+    <section class="section">
+        <h2>Exercise Overview</h2>
+        <p>This page demonstrates several common programming tasks using jQuery, including calculations, loops, functions, DOM manipulation, click events, and CSS manipulation.</p>
+    </section>
+    <section class="section">
+        <h2>1. Calculations and Output</h2>
+        <p>The following calculations are generated using JavaScript variables and displayed using jQuery.</p>
+        <div id="calculationResult"></div>
+    </section>
+    <section class="section">
+        <h2>2. Loops</h2>
+        <p>A JavaScript for loop runs five times. jQuery adds each result to the page.</p>
+        <div id="loopResult"></div>
+    </section>
+    <section class="section">
+        <h2>3. Functions</h2>
+        <p>A JavaScript function adds two numbers. jQuery displays the result.</p>
+        <p id="functionResult"></p>
+    </section>
+    <section class="section">
+        <h2>4. DOM Access and Manipulation</h2>
+        <p id="domText">This text can be changed using jQuery.</p>
+        <button id="changeTextButton">Change Text</button>
+    </section>
+    <section class="section">
+        <h2>5. Click Events</h2>
+        <button id="clickButton">Click Me</button>
+        <p id="clickResult">Click the button to trigger a jQuery event.</p>
+    </section>
+    <section class="section">
+        <h2>6. CSS Manipulation</h2>
+        <div id="styleBox">jQuery can change my CSS.</div>
+        <button id="styleButton">Change Style</button>
+        <button id="resetStyleButton">Reset Style</button>
+    </section>
+</div>
+<footer>
+    <p>IT 4403 - Advanced Web and Mobile Applications</p>
+</footer>
+</body>
+</html>
