@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 4 - Nested JSON Data</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const studentData = {
+                "name": "Niklas Knipschild",
+                "major": "Information Technology",
+                "email": "nknipschild@students.kennesaw.edu",
+                "courses": [
+                    {
+                        "courseCode": "IT 4403",
+                        "courseTitle": "Advanced Web and Mobile Applications",
+                        "creditHours": 3
+                    },
+                    {
+                        "courseCode": "IT 4323",
+                        "courseTitle": "Data Communications and Networking",
+                        "creditHours": 3
+                    },
+                    {
+                        "courseCode": "IT 3203",
+                        "courseTitle": "Introduction to Web Development",
+                        "creditHours": 3
+                    }
+                ]
+            };
+            $("#studentName").text(studentData.name);
+            $("#studentMajor").text(studentData.major);
+            $("#studentEmail").text(studentData.email);
+            $.each(studentData.courses, function (index, course) {
+                $("#courseList").append(
+                    "<li><strong>" + course.courseCode + "</strong> - " +
+                    course.courseTitle + " (" +
+                    course.creditHours + " credit hours)</li>"
+                );
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <h1>Exercise 4: Nested JSON Data</h1>
+    <div>Lab 3: JSON</div>
+</header>
+<div class="container">
+    <a href="index.html" class="menu-button">Home</a>
+    <section class="section">
+        <h2>Student Information</h2>
+        <p><strong>Name:</strong> <span id="studentName"></span></p>
+        <p><strong>Major:</strong> <span id="studentMajor"></span></p>
+        <p><strong>Email:</strong> <span id="studentEmail"></span></p>
+    </section>
+    <section class="section">
+        <h2>Courses</h2>
+        <ul id="courseList"></ul>
+    </section>
+</div>
+<footer>
+    <div>IT 4403 - Advanced Web and Mobile Applications</div>
+</footer>
+</body>
+</html>

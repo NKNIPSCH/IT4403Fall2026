@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1 - JSON Structure Exploration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1>Exercise 1: JSON Structure Exploration</h1>
+    <div>Lab 3: JSON</div>
+</header>
+<div class="container">
+    <a href="index.html" class="menu-button">Home</a>
+    <section class="section">
+        <h2>Open Library JSON Structure</h2>
+        <p>This exercise examines the JSON data provided by Open Library for the book <em>Fantastic Mr. Fox</em>.</p>
+        <p>The main structure of the JSON data is a single JSON object. Inside the main object are name/value pairs containing information about the book, including its title, authors, publication date, publishers, ISBN numbers, number of pages, languages, identifiers, and revision information.</p>
+    </section>
+    <section class="section">
+        <h2>Main Keys</h2>
+        <p>Some of the main keys found in the JSON data include:</p>
+        <ul>
+            <li>identifiers</li>
+            <li>title</li>
+            <li>authors</li>
+            <li>publish_date</li>
+            <li>publishers</li>
+            <li>covers</li>
+            <li>contributions</li>
+            <li>languages</li>
+            <li>type</li>
+            <li>first_sentence</li>
+            <li>number_of_pages</li>
+            <li>isbn_10</li>
+            <li>isbn_13</li>
+            <li>created</li>
+            <li>last_modified</li>
+        </ul>
+    </section>
+    <section class="section">
+        <h2>Simple Values</h2>
+        <p>Some properties contain simple values such as text or numbers.</p>
+        <pre><code>"title": "Fantastic Mr. Fox"</code></pre>
+        <p>This is a name/value pair. The property name is <strong>title</strong> and the value is <strong>Fantastic Mr. Fox</strong>.</p>
+        <pre><code>"number_of_pages": 96</code></pre>
+        <p>This is another name/value pair, but the value is a number instead of text.</p>
+    </section>
+    <section class="section">
+        <h2>JSON Object</h2>
+        <p>Objects group related namea and value pairs together. The <strong>type</strong> property contains another object.</p>
+        <pre><code>"type": {
+    "key": "/type/edition"
+}</code></pre>
+        <p>The value of the type property is an object containing its own name/value pair.</p>
+    </section>
+    <section class="section">
+        <h2>JSON Array</h2>
+        <p>Arrays contain collections of values. The <strong>publishers</strong> property contains an array.</p>
+        <pre><code>"publishers": [
+    "Puffin"
+]</code></pre>
+        <p>The square brackets indicate that the value is an array. Even though this array currently contains only one publisher, it could contain multiple publisher values.</p>
+    </section>
+    <section class="section">
+        <h2>Nested Structure</h2>
+        <p>The JSON contains several nested structures. The <strong>authors</strong> property is an array containing an object.</p>
+        <pre><code>"authors": [
+    {
+        "key": "/authors/OL34184A"
+    }
+]</code></pre>
+        <p>The authors property contains an array. Inside the array is an object, and inside that object is the key property containing the Open Library author identifier.</p>
+    </section>
+    <section class="section">
+        <h2>Collections of Data</h2>
+        <p>Several properties contain collections of information. For example, <strong>covers</strong>, <strong>publishers</strong>, <strong>languages</strong>, <strong>source_records</strong>, <strong>local_id</strong>, <strong>works</strong>, <strong>isbn_10</strong>, and <strong>isbn_13</strong> use arrays to store one or more values.</p>
+        <pre><code>"covers": [
+    15152634,
+    8739161,
+    -1
+]</code></pre>
+    </section>
+    <section class="section">
+        <h2>Additional Structured Data</h2>
+        <p>Some values contain additional structured information inside them. For example, the <strong>first_sentence</strong> property contains an object with both a type and a value.</p>
+        <pre><code>"first_sentence": {
+    "type": "/type/text",
+    "value": "Down in the valley there were three farms."
+}</code></pre>
+        <p>The <strong>created</strong> and <strong>last_modified</strong> properties are also nested objects containing a type and a date/time value.</p>
+    </section>
+    <section class="section">
+        <h2>Overall Organization</h2>
+        <p>The JSON is organized as one main object representing an edition of <em>Fantastic Mr. Fox</em>. The object contains simple text and numeric values, arrays of values, nested objects, and arrays containing objects. This structure allows Open Library to organize many different types of information about the book while keeping related data grouped together.</p>
+    </section>
+    <section class="section">
+        <h2>JSON Source</h2>
+        <p><a href="https://openlibrary.org/books/OL7353617M.json" target="_blank">View the Open Library JSON Source</a></p>
+    </section>
+</div>
+<footer>
+    <div>IT 4403 - Advanced Web and Mobile Applications</div>
+</footer>
+</body>
+</html>

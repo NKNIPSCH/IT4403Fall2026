@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 3 - Read JSON Values</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const bookData = {
+                "books": [
+                    {
+                        "title": "Web Development Basics",
+                        "author": "Maya Lee",
+                        "price": 29.99
+                    },
+                    {
+                        "title": "Modern JavaScript",
+                        "author": "Daniel Kim",
+                        "price": 34.50
+                    },
+                    {
+                        "title": "Understanding JSON",
+                        "author": "Sofia Patel",
+                        "price": 24.95
+                    }
+                ]
+            };
+
+            $("#firstTitle").text(bookData.books[0].title);
+            $("#firstAuthor").text(bookData.books[0].author);
+            $("#firstPrice").text("$" + bookData.books[0].price.toFixed(2));
+            $("#bookCount").text(bookData.books.length);
+
+            $.each(bookData.books, function (index, book) {
+                $("#bookList").append("<li>" + book.title + " by " + book.author + "</li>");
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <h1>Exercise 3: Read JSON Values</h1>
+    <div>Lab 3: JSON</div>
+</header>
+<div class="container">
+    <a href="index.html" class="menu-button">Home</a>
+    <section class="section">
+        <h2>First Book Information</h2>
+        <p><strong>Title:</strong> <span id="firstTitle"></span></p>
+        <p><strong>Author:</strong> <span id="firstAuthor"></span></p>
+        <p><strong>Price:</strong> <span id="firstPrice"></span></p>
+    </section>
+    <section class="section">
+        <h2>All Books</h2>
+        <p>The following list is created dynamically using a jQuery loop.</p>
+        <ul id="bookList"></ul>
+    </section>
+    <section class="section">
+        <h2>Total Number of Books</h2>
+        <p>There are <strong><span id="bookCount"></span></strong> books in the collection.</p>
+    </section>
+</div>
+<footer>
+    <div>IT 4403 - Advanced Web and Mobile Applications</div>
+</footer>
+</body>
+</html>

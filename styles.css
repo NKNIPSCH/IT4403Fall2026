@@ -61,9 +61,10 @@ a:hover {
 .lab-list {
     list-style-type: none;
     padding-left: 0;
+    margin-top: 12px;
 }
 .lab-list li {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 .lab-list a {
     display: block;
@@ -75,6 +76,18 @@ a:hover {
 }
 .lab-list a:hover {
     background-color: #3b2a8f;
+}
+/* Lab Dropdown */
+.lab-dropdown {
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+.lab-dropdown summary {
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
 }
 /* Footer */
 footer {
@@ -136,7 +149,6 @@ button:hover {
     width: 100%;
     margin-bottom: 8px;
 }
-
 .demo-content {
     flex: 1;
 }

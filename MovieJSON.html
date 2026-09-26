@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 6 - Movie Information Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.getJSON("JSON/movie.json", function (data) {
+                $("#movieTitle").text(data.title);
+                $("#year").text(data.year);
+                $("#rating").text(data.mpaa_rating);
+                $("#runtime").text(data.runtime + " minutes");
+                $("#studio").text(data.studio);
+                $("#theaterRelease").text(data.release_dates.theater);
+                $("#dvdRelease").text(data.release_dates.dvd);
+                $("#criticsRating").text(data.ratings.critics_rating);
+                $("#criticsScore").text(data.ratings.critics_score + "%");
+                $("#audienceRating").text(data.ratings.audience_rating);
+                $("#audienceScore").text(data.ratings.audience_score + "%");
+                $("#consensus").text(data.critics_consensus);
+                $("#synopsis").text(data.synopsis);
+                $("#director").text(data.abridged_directors[0].name);
+
+                $.each(data.genres, function (index, genre) {
+                    $("#genreList").append("<li>" + genre + "</li>");
+                });
+
+                $.each(data.abridged_cast, function (index, actor) {
+                    $("#castList").append(
+                        "<li><strong>" + actor.name + "</strong> as " +
+                        actor.characters.join(", ") + "</li>"
+                    );
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <h1>Exercise 6: Movie Information Page</h1>
+    <div>Lab 3: JSON</div>
+</header>
+<div class="container">
+    <a href="index.html" class="menu-button">Home</a>
+    <section class="section">
+        <h2 id="movieTitle"></h2>
+        <p><strong>Year:</strong> <span id="year"></span></p>
+        <p><strong>MPAA Rating:</strong> <span id="rating"></span></p>
+        <p><strong>Runtime:</strong> <span id="runtime"></span></p>
+        <p><strong>Studio:</strong> <span id="studio"></span></p>
+        <p><strong>Director:</strong> <span id="director"></span></p>
+    </section>
+    <section class="section">
+        <h2>Release Information</h2>
+        <p><strong>Theater Release:</strong> <span id="theaterRelease"></span></p>
+        <p><strong>DVD Release:</strong> <span id="dvdRelease"></span></p>
+    </section>
+    <section class="section">
+        <h2>Genres</h2>
+        <ul id="genreList"></ul>
+    </section>
+    <section class="section">
+        <h2>Ratings</h2>
+        <p><strong>Critics Rating:</strong> <span id="criticsRating"></span></p>
+        <p><strong>Critics Score:</strong> <span id="criticsScore"></span></p>
+        <p><strong>Audience Rating:</strong> <span id="audienceRating"></span></p>
+        <p><strong>Audience Score:</strong> <span id="audienceScore"></span></p>
+    </section>
+    <section class="section">
+        <h2>Critics Consensus</h2>
+        <p id="consensus"></p>
+    </section>
+    <section class="section">
+        <h2>Synopsis</h2>
+        <p id="synopsis"></p>
+    </section>
+    <section class="section">
+        <h2>Cast</h2>
+        <ul id="castList"></ul>
+    </section>
+</div>
+<footer>
+    <div>IT 4403 - Advanced Web and Mobile Applications</div>
+</footer>
+</body>
+</html>

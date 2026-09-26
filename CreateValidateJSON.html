@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 2 - Create and Validate JSON</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1>Exercise 2: Create and Validate JSON</h1>
+    <div>Lab 3: JSON</div>
+</header>
+<div class="container">
+    <a href="index.html" class="menu-button">Home</a>
+    <section class="section">
+        <h2>Part A: Convert a Message to JSON</h2>
+        <p>The message information can be represented as a JSON object using name and value pairs.</p>
+        <pre><code>{
+    "to": "Alex",
+    "from": "Jordan",
+    "heading": "Reminder",
+    "body": "Don't forget our meeting tomorrow."
+}</code></pre>
+        <p>This JSON contains four properties. Each property name and text value is enclosed in double quotation marks, and commas separate the name/value pairs.</p>
+    </section>
+    <section class="section">
+        <h2>Part B: Convert a Collection to JSON</h2>
+        <p>The book collection can be represented using a <strong>books</strong> array. Each item in the array is a separate JSON object containing the title, author, and price of a book.</p>
+        <pre><code>{
+    "books": [
+        {
+            "title": "Web Development Basics",
+            "author": "Maya Lee",
+            "price": 29.99
+        },
+        {
+            "title": "Modern JavaScript",
+            "author": "Daniel Kim",
+            "price": 34.50
+        },
+        {
+            "title": "Understanding JSON",
+            "author": "Sofia Patel",
+            "price": 24.95
+        }
+    ]
+}</code></pre>
+        <p>The square brackets create the books array, while the curly braces define each individual book object.</p>
+    </section>
+    <section class="section">
+        <h2>JSON Validation</h2>
+        <p>Both JSON structures were checked to make sure they follow valid JSON syntax.</p>
+        <ul>
+            <li>Property names are enclosed in double quotation marks.</li>
+            <li>Text values are enclosed in double quotation marks.</li>
+            <li>Numeric values are written without quotation marks.</li>
+            <li>Commas correctly separate properties and array items.</li>
+            <li>Curly braces are used for objects.</li>
+            <li>Square brackets are used for arrays.</li>
+            <li>Both JSON structures are syntactically valid.</li>
+        </ul>
+    </section>
+</div>
+<footer>
+    <div>IT 4403 - Advanced Web and Mobile Applications</div>
+</footer>
+</body>
+</html>
