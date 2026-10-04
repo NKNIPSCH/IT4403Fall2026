@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Library Single Book</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #241773;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 5px solid #9e7c0c;
+        }
+        header h1 {
+            margin: 0;
+        }
+        header p {
+            margin: 5px 0 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 25px auto;
+        }
+        .section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #241773;
+            border-bottom: 2px solid #9e7c0c;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        a {
+            color: #241773;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #9e7c0c;
+        }
+        .menu-button {
+            display: inline-block;
+            background-color: #241773;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .menu-button:hover {
+            background-color: #3b2a8f;
+            color: white;
+        }
+        .book-layout {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+        }
+        .book-cover {
+            width: 200px;
+            height: auto;
+            border: 2px solid #241773;
+            border-radius: 4px;
+        }
+        .book-info {
+            flex: 1;
+        }
+        .book-info p {
+            margin: 10px 0;
+        }
+        .error {
+            color: #b00020;
+            font-weight: bold;
+        }
+        footer {
+            background-color: #241773;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+        @media screen and (max-width: 700px) {
+            .container {
+                width: 95%;
+            }
+            .book-layout {
+                display: block;
+            }
+            .book-cover {
+                display: block;
+                margin: 0 auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Open Library Single Book</h1>
+    <p>Milestone 1 - JSON Data Display</p>
+</header>
+<div class="container">
+    <a href="index.html" class="menu-button">Home</a>
+    <div class="section">
+        <div id="bookData">
+            <p>Loading book information...</p>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>IT 4403 Advanced Web and Mobile Applications</p>
+</footer>
+<script>
+$(document).ready(function(){
+    $.getJSON("openlibrary-book.json",function(book){
+        let title = book.title ? book.title : "Not available";
+        let publisher = book.publishers ? book.publishers.join(", ") : "Not available";
+        let publishDate = book.publish_date ? book.publish_date : "Not available";
+        let pages = book.number_of_pages ? book.number_of_pages : "Not available";
+        let isbn10 = book.isbn_10 ? book.isbn_10.join(", ") : "Not available";
+        let isbn13 = book.isbn_13 ? book.isbn_13.join(", ") : "Not available";
+        let firstSentence = "Not available";
+        if(book.first_sentence && book.first_sentence.value){
+            firstSentence = book.first_sentence.value;
+        }
+        let author = "";
+        if(book.authors && book.authors.length > 0){
+            author = book.authors[0].key;
+        }
+        let contributor = "Not available";
+        if(book.contributors && book.contributors.length > 0){
+            contributor = book.contributors[0].name;
+        }
+        let language = "Not available";
+        if(book.languages && book.languages.length > 0){
+            if(book.languages[0].key == "/languages/eng"){
+                language = "English";
+            }else{
+                language = book.languages[0].key;
+            }
+        }
+        let cover = "";
+        if(book.covers && book.covers.length > 0){
+            cover = "https://covers.openlibrary.org/b/id/" + book.covers[0] + "-L.jpg";
+        }
+        let html = '<div class="book-layout">';
+        if(cover != ""){
+            html += '<div>';
+            html += '<img src="' + cover + '" alt="Cover of ' + title + '" class="book-cover">';
+            html += '</div>';
+        }
+        html += '<div class="book-info">';
+        html += '<h2>' + title + '</h2>';
+        html += '<p><strong>Publisher:</strong> ' + publisher + '</p>';
+        html += '<p><strong>Publication Date:</strong> ' + publishDate + '</p>';
+        html += '<p><strong>Page Count:</strong> ' + pages + '</p>';
+        html += '<p><strong>ISBN-10:</strong> ' + isbn10 + '</p>';
+        html += '<p><strong>ISBN-13:</strong> ' + isbn13 + '</p>';
+        if(author != ""){
+            html += '<p><strong>Author:</strong> <a href="https://openlibrary.org' + author + '" target="_blank">View Author Record</a></p>';
+        }else{
+            html += '<p><strong>Author:</strong> Not available</p>';
+        }
+        html += '<p><strong>Contributor:</strong> ' + contributor + '</p>';
+        html += '<p><strong>Language:</strong> ' + language + '</p>';
+        html += '<p><strong>First Sentence:</strong> ' + firstSentence + '</p>';
+        html += '<p><strong>Open Library Record:</strong> <a href="https://openlibrary.org/books/OL7353617M" target="_blank">View Book on Open Library</a></p>';
+        html += '</div>';
+        html += '</div>';
+        $("#bookData").html(html);
+    }).fail(function(){
+        $("#bookData").html('<p class="error">The book information could not be loaded.</p>');
+    });
+});
+</script>
+</body>
+</html>

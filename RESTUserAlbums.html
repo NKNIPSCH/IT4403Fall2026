@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4 - User and Albums</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.getJSON("https://jsonplaceholder.typicode.com/users/1", function (user) {
+                $("#userName").text(user.name);
+                $("#userUsername").text(user.username);
+                $("#userEmail").text(user.email);
+                $("#userAddress").text(user.address.street + ", " + user.address.suite + ", " + user.address.city + ", " + user.address.zipcode);
+                $("#userPhone").text(user.phone);
+                $("#userWebsite").text(user.website);
+                $("#userCompany").text(user.company.name);
+            });
+            $.getJSON("https://jsonplaceholder.typicode.com/albums?userId=1", function (albums) {
+                $.each(albums, function (index, album) {
+                    $("#albumList").append("<li><a href='RESTAlbumPhotos.html?albumId=" + album.id + "'>" + album.title + "</a></li>");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>User and Albums</h1>
+        <div>Lab 4: RESTful Web APIs</div>
+    </header>
+    <div class="container">
+        <a href="index.html" class="menu-button">Home</a>
+        <section class="section">
+            <h2>User Information</h2>
+            <p><strong>Name:</strong> <span id="userName"></span></p>
+            <p><strong>Username:</strong> <span id="userUsername"></span></p>
+            <p><strong>Email:</strong> <span id="userEmail"></span></p>
+            <p><strong>Address:</strong> <span id="userAddress"></span></p>
+            <p><strong>Phone:</strong> <span id="userPhone"></span></p>
+            <p><strong>Website:</strong> <span id="userWebsite"></span></p>
+            <p><strong>Company:</strong> <span id="userCompany"></span></p>
+        </section>
+        <section class="section">
+            <h2>User Albums</h2>
+            <p>Select an album below to view its photos.</p>
+            <ul id="albumList"></ul>
+        </section>
+    </div>
+    <footer>
+        <div>IT 4403 - Advanced Web and Mobile Applications</div>
+    </footer>
+</body>
+</html>

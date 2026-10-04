@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4 - Album and Photos</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const parameters = new URLSearchParams(window.location.search);
+            const albumId = parameters.get("albumId");
+            if (albumId) {
+                $.getJSON("https://jsonplaceholder.typicode.com/albums/" + albumId, function (album) {
+                    $("#albumTitle").text(album.title);
+                    $("#albumId").text(album.id);
+                    $("#userId").text(album.userId);
+                });
+                $.getJSON("https://jsonplaceholder.typicode.com/photos?albumId=" + albumId, function (photos) {
+                    $.each(photos, function (index, photo) {
+                        $("#photoList").append(
+                            "<div>" +
+                            "<img src='" + photo.thumbnailUrl + "' alt='" + photo.title + "'>" +
+                            "<p>" + photo.title + "</p>" +
+                            "</div>"
+                        );
+                    });
+                });
+            } else {
+                $("#albumInformation").html("<p>No album was selected.</p>");
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Album and Photos</h1>
+        <div>Lab 4: RESTful Web APIs</div>
+    </header>
+    <div class="container">
+        <a href="index.html" class="menu-button">Home</a>
+        <a href="RESTUserAlbums.html" class="menu-button">Back to User and Albums</a>
+        <section class="section" id="albumInformation">
+            <h2>Album Information</h2>
+            <p><strong>Album Title:</strong> <span id="albumTitle"></span></p>
+            <p><strong>Album ID:</strong> <span id="albumId"></span></p>
+            <p><strong>User ID:</strong> <span id="userId"></span></p>
+        </section>
+        <section class="section">
+            <h2>Album Photos</h2>
+            <div id="photoList"></div>
+        </section>
+    </div>
+    <footer>
+        <div>IT 4403 - Advanced Web and Mobile Applications</div>
+    </footer>
+</body>
+</html>
