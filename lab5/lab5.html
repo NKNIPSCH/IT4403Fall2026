@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 5 - Open Library API</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+        function getBooks() {
+            fetch("https://openlibrary.org/search.json?q=data%20analysis&limit=10")
+            .then(response => response.json())
+            .then(data => {
+                var results = document.getElementById("results");
+                results.innerHTML = "";
+                for (var i = 0; i < data.docs.length; i++) {
+                    var book = data.docs[i];
+                    var year = book.first_publish_year;
+                    if (!year) {
+                        year = "Year unavailable";
+                    }
+                    results.innerHTML += "<li>" + book.title + " - " + year + "</li>";
+                }
+            });
+        }
+    </script>
+</head>
+<body onload="getBooks()">
+<header>
+    <h1>Lab 5: Open Library API</h1>
+    <p>IT 4403 - Advanced Web and Mobile Applications</p>
+</header>
+<div class="container">
+    <a href="../index.html" class="menu-button">Home</a>
+    <section class="section">
+        <h2>Open Library: Data Analysis Books</h2>
+        <p>This page retrieves book information from the Open Library API using JavaScript.</p>
+        <ul id="results"></ul>
+    </section>
+</div>
+<footer>
+    <p>IT 4403 - Advanced Web and Mobile Applications</p>
+</footer>
+</body>
+</html>
