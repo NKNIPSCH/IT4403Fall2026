@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery AJAX call errors</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        $("#button1").click(function (event)
+        {
+            event.preventDefault();
+            loadBooks();
+        });
+		
+		$("#button2").click(function (event)
+        {
+            event.preventDefault();
+            loadBooks();
+        });
+    });
+
+    function loadBooks()
+    {
+        $("#ajaxDiv1").html("Loading books...");
+        $.getJSON("https://openlibrary.org/search.json?q=php%20mysql&limit=10", function (data)
+        {
+            $("#ajaxDiv1").html("");
+            $.each(data.docs, function (index, book)
+            {
+                $("#ajaxDiv1").append("<p>" + book.title + "</p>");
+            });
+        }).fail(function ()
+        {
+            $("#ajaxDiv1").html("Error loading books.");
+        });
+    }
+</script>
+
+</head>
+<body>
+    <h1>Fix errors: Request some content from https://openlibrary.org/search.json?q=php%20mysql</h1>
+	<form>
+    <input type="button" id="button1" value="Click me to load some partial page content" />
+	</form>
+	
+	<a href="#" id="button2">Click me to load some content</a>
+	
+	<h2>Load content in AJAX way here</h2>
+
+    <div id="ajaxDiv1"></div>
+
+</body>
+</html>

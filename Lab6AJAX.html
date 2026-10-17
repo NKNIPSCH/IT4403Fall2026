@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 6 - AJAX</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            //AJAX using .load()
+            $("#loadButton").click(function(){
+                $("#loadResult").load("ajax-static-response.html");
+            });
+            //AJAX using $.get()
+            $("#getButton").click(function(){
+                $.get("ajax-static-response.html",function(data){
+                    $("#getResult").html(data);
+                });
+            });
+            //AJAX using $.ajax()
+            $("#ajaxButton").click(function(){
+                $.ajax({
+                    url:"ajax-static-response.html",
+                    type:"GET",
+                    success:function(data){
+                        $("#ajaxResult").html(data);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Lab 6: AJAX</h1>
+        <p>Activity 1: Modifying jQuery AJAX Methods</p>
+    </header>
+    <div class="container">
+        <a href="index.html" class="menu-button">Home</a>
+        <section class="section">
+            <h2>jQuery AJAX Demonstration</h2>
+            <p>This page demonstrates how jQuery AJAX can load content without refreshing the entire webpage.</p>
+            <h3>AJAX Using .load()</h3>
+            <button id="loadButton">Load Updated Content</button>
+            <div id="loadResult"></div>
+            <h3>AJAX Using $.get()</h3>
+            <button id="getButton">Load Updated Content</button>
+            <div id="getResult"></div>
+            <h3>AJAX Using $.ajax()</h3>
+            <button id="ajaxButton">Load Updated Content</button>
+            <div id="ajaxResult"></div>
+        </section>
+    </div>
+    <footer>
+        <p>IT 4403 - Advanced Web and Mobile Applications</p>
+    </footer>
+</body>
+</html>
