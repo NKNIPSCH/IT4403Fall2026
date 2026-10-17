@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milestone 2 - Book Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function getBookDetails() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var workId = urlParams.get("id");
+            var results = document.getElementById("bookDetails");
+            if (!workId) {
+                results.innerHTML = "<p>No book selected. Please return to the search page.</p>";
+                return;
+            }
+            var url = "https://openlibrary.org/works/" + workId + ".json";
+            results.innerHTML = "<p>Loading book details...</p>";
+            fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("API request failed");
+                }
+                return response.json();
+            })
+            .then(book => {
+                var bookHTML = "<div class='book-details'>";
+                if (book.covers && book.covers.length > 0) {
+                    bookHTML += "<img src='https://covers.openlibrary.org/b/id/" + book.covers[0] + "-M.jpg?default=false' alt='Book Cover' onerror=\"this.outerHTML='No cover available'\">";
+                } else {
+                    bookHTML += "<p>No cover available</p>";
+                }
+                bookHTML += "<div>";
+                bookHTML += "<h2>" + book.title + "</h2>";
+                bookHTML += "<p><strong>Work ID:</strong> " + workId + "</p>";
+                if (book.description) {
+                    if (typeof book.description == "string") {
+                        bookHTML += "<p><strong>Description:</strong> " + book.description + "</p>";
+                    } else {
+                        bookHTML += "<p><strong>Description:</strong> " + book.description.value + "</p>";
+                    }
+                } else {
+                    bookHTML += "<p><strong>Description:</strong> Description unavailable.</p>";
+                }
+                if (book.subjects && book.subjects.length > 0) {
+                    bookHTML += "<h3>Subjects</h3>";
+                    bookHTML += "<ul>";
+                    for (var i = 0; i < book.subjects.length && i < 10; i++) {
+                        bookHTML += "<li>" + book.subjects[i] + "</li>";
+                    }
+                    bookHTML += "</ul>";
+                } else {
+                    bookHTML += "<p><strong>Subjects:</strong> No subjects available.</p>";
+                }
+                bookHTML += "<p><a href='https://openlibrary.org/works/" + workId + "' target='_blank'>View on Open Library</a></p>";
+                bookHTML += "</div>";
+                bookHTML += "</div>";
+                results.innerHTML = bookHTML;
+            })
+            .catch(error => {
+                results.innerHTML = "<p>Unable to retrieve book details. Please try again.</p>";
+                console.log(error);
+            });
+        }
+    </script>
+</head>
+<body onload="getBookDetails()">
+<header>
+    <h1>Open Library Book Details</h1>
+    <p>IT 4403 - Individual Project Milestone 2</p>
+</header>
+<nav>
+    <a href="index.html">Home</a>
+    <a href="MyBookshelf.html">My Bookshelf</a>
+</nav>
+<div class="container">
+    <section class="section">
+        <h2>Book Information</h2>
+        <div id="bookDetails">
+            <p>Loading book information...</p>
+        </div>
+    </section>
+</div>
+<footer>
+    <p>IT 4403 - Advanced Web and Mobile Applications</p>
+</footer>
+</body>
+</html>

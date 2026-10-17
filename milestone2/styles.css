@@ -1,0 +1,156 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+/* Header */
+header {
+    background-color: #241773;
+    color: white;
+    padding: 25px;
+    text-align: center;
+    border-bottom: 5px solid #9e7c0c;
+}
+header h1 {
+    margin: 0;
+}
+header p {
+    margin: 5px 0 0;
+}
+/* Navigation */
+nav {
+    margin-top: 15px;
+}
+nav a {
+    display: inline-block;
+    background-color: white;
+    color: #241773;
+    text-decoration: none;
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 4px;
+}
+nav a:hover {
+    background-color: #9e7c0c;
+    color: white;
+}
+/* Main Content */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 25px auto;
+}
+.section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+}
+h2 {
+    color: #241773;
+    border-bottom: 2px solid #9e7c0c;
+    padding-bottom: 5px;
+}
+/* Links */
+a {
+    color: #241773;
+    font-weight: bold;
+}
+a:hover {
+    color: #9e7c0c;
+}
+/* Search Form */
+input, select {
+    padding: 10px;
+    margin: 5px 5px 5px 0;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+}
+input[type="text"] {
+    width: 60%;
+    max-width: 400px;
+}
+button {
+    background-color: #241773;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px 5px 5px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+button:hover {
+    background-color: #3b2a8f;
+}
+/* Book Results */
+.book {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+.book img {
+    width: 80px;
+    height: auto;
+}
+.book h3 {
+    margin: 0;
+}
+/* Book Details */
+.book-details {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+.book-details img {
+    width: 160px;
+    height: auto;
+}
+/* Messages */
+.message {
+    margin-top: 15px;
+}
+/* Footer */
+footer {
+    background-color: #241773;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+}
+/* Mobile */
+@media screen and (max-width: 700px) {
+    .container {
+        width: 95%;
+    }
+    input[type="text"] {
+        width: 90%;
+    }
+    .book-details {
+        display: block;
+    }
+}
+/* Book Details */
+.book-details {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+.book-details img {
+    max-width: 180px;
+    height: auto;
+    border: 2px solid #241773;
+    border-radius: 4px;
+}
+.book-details div {
+    flex: 1;
+}

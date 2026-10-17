@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milestone 2 - Book Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        var searchTerm = "";
+        var currentPage = 1;
+        var resultsPerPage = 10;
+        function searchBooks() {
+            searchTerm = document.getElementById("searchInput").value.trim();
+            if (searchTerm == "") {
+                document.getElementById("results").innerHTML = "<p>Please enter a search term.</p>";
+                document.getElementById("pageSelection").innerHTML = "";
+                return;
+            }
+            currentPage = 1;
+            getBooks();
+        }
+        function getBooks() {
+            var results = document.getElementById("results");
+            var pageSelection = document.getElementById("pageSelection");
+            results.innerHTML = "<p>Loading books...</p>";
+            var url = "https://openlibrary.org/search.json?q=" + encodeURIComponent(searchTerm) + "&limit=" + resultsPerPage + "&page=" + currentPage;
+            fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("API request failed");
+                }
+                return response.json();
+            })
+            .then(data => {
+                results.innerHTML = "";
+                if (data.docs.length == 0) {
+                    results.innerHTML = "<p>No books found. Please try another search.</p>";
+                    pageSelection.innerHTML = "";
+                    return;
+                }
+                for (var i = 0; i < data.docs.length; i++) {
+                    var book = data.docs[i];
+                    var workId = book.key.replace("/works/", "");
+                    var bookHTML = "<div class='book'>";
+                    if (book.cover_i) {
+                        bookHTML += "<img src='https://covers.openlibrary.org/b/id/" + book.cover_i + "-S.jpg' alt='Book Cover'>";
+                    } else {
+                        bookHTML += "<p>No cover available</p>";
+                    }
+                    bookHTML += "<a href='BookDetails.html?id=" + workId + "'>" + book.title + "</a>";
+                    bookHTML += "</div>";
+                    results.innerHTML += bookHTML;
+                }
+                var totalPages = Math.ceil(data.numFound / resultsPerPage);
+                if (totalPages > 6) {
+                    totalPages = 6;
+                }
+                pageSelection.innerHTML = "<label for='pageNumber'>Select Page: </label>";
+                pageSelection.innerHTML += "<select id='pageNumber' onchange='changePage()'></select>";
+                var dropdown = document.getElementById("pageNumber");
+                for (var i = 1; i <= totalPages; i++) {
+                    dropdown.innerHTML += "<option value='" + i + "'>Page " + i + "</option>";
+                }
+                dropdown.value = currentPage;
+            })
+            .catch(error => {
+                results.innerHTML = "<p>Unable to retrieve books. Please try again.</p>";
+                pageSelection.innerHTML = "";
+                console.log(error);
+            });
+        }
+        function changePage() {
+            currentPage = document.getElementById("pageNumber").value;
+            getBooks();
+        }
+    </script>
+</head>
+<body>
+<header>
+    <h1>Open Library Book Search</h1>
+    <p>IT 4403 - Individual Project Milestone 2</p>
+</header>
+<nav>
+    <a href="index.html">Home</a>
+    <a href="MyBookshelf.html">My Bookshelf</a>
+</nav>
+<div class="container">
+    <section class="section">
+        <h2>Search for Books</h2>
+        <p>Enter a book title, author, or keyword to search the Open Library database.</p>
+        <input type="text" id="searchInput" placeholder="Enter search term">
+        <button onclick="searchBooks()">Search</button>
+    </section>
+    <section class="section">
+        <h2>Search Results</h2>
+        <div id="results">
+            <p>Enter a search term above to find books.</p>
+        </div>
+        <div id="pageSelection"></div>
+    </section>
+</div>
+<footer>
+    <p>IT 4403 - Advanced Web and Mobile Applications</p>
+</footer>
+</body>
+</html>

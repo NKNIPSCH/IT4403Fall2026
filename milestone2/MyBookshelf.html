@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milestone 2 - My Bookshelf</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function getMyBooks() {
+            var myBooks = [
+                "OL1063267W",
+                "OL18819818W",
+                "OL20015117W",
+                "OL1990870W",
+                "OL15981317W"
+            ];
+            var results = document.getElementById("bookshelf");
+            results.innerHTML = "<p>Loading books...</p>";
+            for (var i = 0; i < myBooks.length; i++) {
+                var workId = myBooks[i];
+                var url = "https://openlibrary.org/works/" + workId + ".json";
+                fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("API request failed");
+                    }
+                    return response.json();
+                })
+                .then(book => {
+                    if (results.innerHTML == "<p>Loading books...</p>") {
+                        results.innerHTML = "";
+                    }
+                    var bookId = book.key.replace("/works/", "");
+                    var bookHTML = "<div class='book'>";
+                    if (book.covers && book.covers.length > 0) {
+                        bookHTML += "<img src='https://covers.openlibrary.org/b/id/" + book.covers[0] + "-S.jpg?default=false' alt='Book Cover' onerror=\"this.outerHTML='No cover available'\">";
+                    } else {
+                        bookHTML += "<p>No cover available</p>";
+                    }
+                    bookHTML += "<a href='BookDetails.html?id=" + bookId + "'>" + book.title + "</a>";
+                    bookHTML += "</div>";
+                    results.innerHTML += bookHTML;
+                })
+                .catch(error => {
+                    if (results.innerHTML == "<p>Loading books...</p>") {
+                        results.innerHTML = "";
+                    }
+                    results.innerHTML += "<p>Unable to retrieve one of the books.</p>";
+                    console.log(error);
+                });
+            }
+        }
+    </script>
+</head>
+<body onload="getMyBooks()">
+<header>
+    <h1>My Bookshelf</h1>
+    <p>IT 4403 - Individual Project Milestone 2</p>
+</header>
+<nav>
+    <a href="index.html">Home</a>
+    <a href="MyBookshelf.html">My Bookshelf</a>
+</nav>
+<div class="container">
+    <section class="section">
+        <h2>Sales & Professional Development</h2>
+        <p>This bookshelf contains five books I selected that focus on sales, negotiation, prospecting, communication, and professional development.</p>
+        <div id="bookshelf"></div>
+    </section>
+</div>
+<footer>
+    <p>IT 4403 - Advanced Web and Mobile Applications</p>
+</footer>
+</body>
+</html>
