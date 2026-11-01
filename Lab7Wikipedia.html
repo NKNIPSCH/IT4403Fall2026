@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 7 - Wikipedia Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#searchButton").click(function(){
+                var searchTerm = $("#searchInput").val().trim();
+                if(searchTerm == ""){
+                    $("#results").html("Please enter a search term.");
+                    return;
+                }
+                $("#results").html("Loading suggestions...");
+                $.ajax({
+                    url:"https://en.wikipedia.org/w/api.php",
+                    type:"GET",
+                    dataType:"json",
+                    data:{
+                        action:"opensearch",
+                        search:searchTerm,
+                        limit:5,
+                        format:"json",
+                        origin:"*"
+                    },
+                    success:function(data){
+                        $("#results").html("");
+                        if(data[1].length == 0){
+                            $("#results").html("No suggestions found.");
+                        }
+                        else{
+                            for(var i = 0; i < data[1].length; i++){
+                                $("#results").append("<p><a href='" + data[3][i] + "' target='_blank'>" + data[1][i] + "</a></p>");
+                            }
+                        }
+                    },
+                    error:function(){
+                        $("#results").html("Error loading suggestions. Please try again.");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Lab 7: AJAX REST & Cross-Origin Requests</h1>
+        <p>Task 1: Wikipedia Search Suggestions</p>
+    </header>
+    <div class="container">
+        <a href="index.html" class="menu-button">Home</a>
+        <section class="section">
+            <h2>Wikipedia Search</h2>
+            <p>Enter a word or partial term to find matching Wikipedia articles.</p>
+            <input type="text" id="searchInput" placeholder="Enter search term">
+            <button id="searchButton">Search Wikipedia</button>
+            <div id="results"></div>
+        </section>
+    </div>
+    <footer>
+        <p>IT 4403 - Advanced Web and Mobile Applications</p>
+    </footer>
+</body>
+</html>

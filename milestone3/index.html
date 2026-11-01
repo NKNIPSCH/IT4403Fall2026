@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milestone 3 - Open Library SPA</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+<header>
+    <h1>Open Library Book Search</h1>
+    <p>IT 4403 - Individual Project Milestone 3</p>
+    <nav>
+        <a href="#searchSection">Home</a>
+        <a href="#collectionSection">Book Collection</a>
+        <a href="#detailsSection">Book Details</a>
+    </nav>
+</header>
+<div class="container">
+    <section class="section" id="searchSection">
+        <h2>Search for Books</h2>
+        <p>Enter a book title, author, or keyword to search the Open Library database.</p>
+        <input type="text" id="searchInput" placeholder="Enter search term">
+        <button id="searchButton">Search</button>
+        <p id="searchMessage" class="message"></p>
+    </section>
+    <section class="section" id="resultsSection">
+        <h2>Search Results</h2>
+        <div id="results">
+            <p>Enter a search term above to find books.</p>
+        </div>
+        <div id="pageSelection"></div>
+    </section>
+    <section class="section" id="detailsSection">
+        <h2>Book Information</h2>
+        <div id="bookDetails">
+            <p>Select a book from the search results or collection to view its details.</p>
+        </div>
+    </section>
+    <section class="section" id="collectionSection">
+        <h2>History Book Collection</h2>
+        <p>This collection displays books from the History subject on Open Library.</p>
+        <div id="bookshelf">
+            <p>Loading book collection...</p>
+        </div>
+    </section>
+</div>
+<footer>
+    <p>IT 4403 - Advanced Web and Mobile Applications</p>
+</footer>
+</body>
+</html>

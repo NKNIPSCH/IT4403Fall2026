@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 7 - ZIP Code Lookup</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        function displayResults(data){
+            $("#results").html("");
+            if(!data.places || data.places.length == 0){
+                $("#results").html("No locations found.");
+                return;
+            }
+            $("#results").append("<p>ZIP Code: " + data["post code"] + "</p>");
+            $("#results").append("<p>Country: " + data.country + "</p>");
+            for(var i = 0; i < data.places.length; i++){
+                $("#results").append("<p>City: " + data.places[i]["place name"] + "</p>");
+                $("#results").append("<p>State: " + data.places[i].state + " (" + data.places[i]["state abbreviation"] + ")</p>");
+            }
+        }
+        function getZipCode(){
+            var zip = $("#zipInput").val().trim();
+            if(!/^\d{5}$/.test(zip)){
+                $("#results").html("Please enter a valid 5-digit ZIP code.");
+                return "";
+            }
+            $("#results").html("Loading location information...");
+            return zip;
+        }
+        $(document).ready(function(){
+            $("#fetchButton").click(function(){
+                var zip = getZipCode();
+                if(zip == ""){
+                    return;
+                }
+                fetch("https://api.zippopotam.us/us/" + zip)
+                .then(function(response){
+                    if(!response.ok){
+                        throw new Error("ZIP code not found");
+                    }
+                    return response.json();
+                })
+                .then(function(data){
+                    displayResults(data);
+                })
+                .catch(function(){
+                    $("#results").html("Unable to find ZIP code or load location information.");
+                });
+            });
+            $("#ajaxButton").click(function(){
+                var zip = getZipCode();
+                if(zip == ""){
+                    return;
+                }
+                $.ajax({
+                    url:"https://api.zippopotam.us/us/" + zip,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data){
+                        displayResults(data);
+                    },
+                    error:function(){
+                        $("#results").html("Unable to find ZIP code or load location information.");
+                    }
+                });
+            });
+            $("#jsonButton").click(function(){
+                var zip = getZipCode();
+                if(zip == ""){
+                    return;
+                }
+                $.getJSON("https://api.zippopotam.us/us/" + zip,function(data){
+                    displayResults(data);
+                }).fail(function(){
+                    $("#results").html("Unable to find ZIP code or load location information.");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Lab 7: AJAX REST & Cross-Origin Requests</h1>
+        <p>Task 2: ZIP Code Lookup</p>
+    </header>
+    <div class="container">
+        <a href="index.html" class="menu-button">Home</a>
+        <section class="section">
+            <h2>ZIP Code Lookup</h2>
+            <p>Enter a 5-digit U.S. ZIP code to find its location.</p>
+            <input type="text" id="zipInput" placeholder="Enter ZIP Code" maxlength="5">
+            <h3>Choose a Request Method</h3>
+            <button id="fetchButton">JavaScript fetch()</button>
+            <button id="ajaxButton">jQuery $.ajax()</button>
+            <button id="jsonButton">jQuery $.getJSON()</button>
+            <div id="results"></div>
+        </section>
+    </div>
+    <footer>
+        <p>IT 4403 - Advanced Web and Mobile Applications</p>
+    </footer>
+</body>
+</html>
