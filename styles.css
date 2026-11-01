@@ -187,6 +187,53 @@ button:hover {
     font-style: italic;
     margin-top: 20px;
 }
+/* Lab 8: CSS Flexbox */
+#searchArea {
+    margin-bottom: 20px;
+}
+#searchInput {
+    padding: 10px;
+    width: 250px;
+    max-width: 90%;
+}
+#layoutButtons {
+    margin-bottom: 20px;
+}
+#results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.book-card {
+    box-sizing: border-box;
+    width: 200px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: center;
+}
+.book-card img {
+    height: 150px;
+    max-width: 100%;
+}
+.book-card h3 {
+    color: #241773;
+}
+#results.list .book-card {
+    width: 100%;
+}
+#results.grid .book-card {
+    width: 200px;
+}
+#results.three .book-card {
+    width: calc((100% - 30px) / 3);
+}
+#results.featured .book-card {
+    width: 200px;
+}
+#results.featured .book-card:first-child {
+    width: 100%;
+}
 /* Mobile */
 @media screen and (max-width: 700px) {
     .profile-picture {
@@ -203,5 +250,8 @@ button:hover {
     .demo-controls {
         width: 100%;
         margin-bottom: 15px;
+    }
+    #results.three .book-card {
+        width: 100%;
     }
 }
