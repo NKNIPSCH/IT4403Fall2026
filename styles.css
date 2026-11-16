@@ -255,3 +255,215 @@ button:hover {
         width: 100%;
     }
 }
+/* Lab 9: Mustache Pagination */
+#pages {
+    margin: 15px 0;
+}
+.page {
+    display: inline-block;
+    border: 1px solid #241773;
+    padding: 8px 12px;
+    margin: 5px 5px 5px 0;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #241773;
+}
+.page:hover {
+    background-color: #241773;
+    color: white;
+}
+#currentPage {
+    color: #241773;
+}
+#results .book-card {
+    cursor: pointer;
+}
+#results .book-card:hover {
+    border-color: #241773;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+#bookDetails {
+    padding: 15px;
+    background-color: #f4f4f4;
+    border-left: 5px solid #9e7c0c;
+    border-radius: 4px;
+}
+/* Lab 9: Horizontal Slideshow */
+#slideshowControls {
+    text-align: center;
+    margin: 20px 0;
+}
+#pageCounter {
+    font-size: 18px;
+    font-weight: bold;
+    color: #241773;
+    margin: 0 15px;
+}
+#results.slideshow {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 15px 0;
+    scroll-behavior: smooth;
+}
+#results.slideshow .book-card {
+    flex: 0 0 160px;
+    width: 160px;
+}
+#results.slideshow .book-card img {
+    height: 150px;
+    max-width: 100%;lab10-task2.html
+}
+/* Lab 10: Media Queries */
+.media-box {
+    background-color: #f4f4f4;
+    border: 2px solid #241773;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+.media-box h3 {
+    color: #241773;
+    margin-top: 0;
+}
+/* Scenario A: Width 400px to 600px */
+@media screen and (min-width: 400px) and (max-width: 600px) {
+    #mediaBox1 {
+        background-color: lightblue;
+    }
+}
+/* Scenario B: Portrait and width under 640px */
+@media screen and (orientation: portrait) and (max-width: 639px) {
+    #mediaBox2 {
+        background-color: lightgreen;
+    }
+}
+/* Scenario C: Aspect ratio narrower than 16:9 */
+@media screen and (max-aspect-ratio: 16/9) and (min-width: 480px) and (max-width: 960px) {
+    #mediaBox3 {
+        background-color: lightcoral;
+    }
+}
+/* Scenario D: Print or screen under 480px */
+@media print, screen and (max-width: 479px) {
+    #mediaBox4 {
+        background-color: lightyellow;
+    }
+}
+/* Lab 10: Fluid Grid Layout */
+#fluidContainer {
+    width: 100%;
+    margin: auto;
+    overflow: auto;
+}
+#fluidHeader {
+    background-color: #241773;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+#fluidSidebar {
+    width: 22%;
+    float: left;
+    background-color: #f4f4f4;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid #241773;
+    border-radius: 6px;
+}
+#fluidMain {
+    width: 76%;
+    float: right;
+    background-color: #f4f4f4;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid #241773;
+    border-radius: 6px;
+}
+#fluidFooter {
+    clear: both;
+    background-color: #241773;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+/* Lab 10: Full Responsive Design */
+#responsiveContainer {
+    width: 100%;
+    margin: auto;
+    overflow: auto;
+}
+#responsiveHeader {
+    background-color: #241773;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+#responsiveHeader h3 {
+    margin: 0;
+}
+#responsiveSidebar {
+    width: 22%;
+    float: left;
+    background-color: #f4f4f4;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 2px solid #241773;
+    border-radius: 6px;
+}
+#responsiveMain {
+    width: 76%;
+    float: right;
+    background-color: #f4f4f4;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid #241773;
+    border-radius: 6px;
+    overflow: auto;
+}
+.responsive-product {
+    width: 23%;
+    min-height: 150px;
+    float: left;
+    padding: 10px;
+    margin: 1%;
+    box-sizing: border-box;
+    border: 2px solid #9e7c0c;
+    border-radius: 6px;
+    background-color: white;
+}
+/* Tablet Layout */
+@media screen and (max-width: 900px) {
+    #responsiveSidebar {
+        width: 30%;
+    }
+    #responsiveMain {
+        width: 68%;
+    }
+    .responsive-product {
+        width: 48%;
+    }
+}
+/* Mobile Layout */
+@media screen and (max-width: 600px) {
+    #responsiveSidebar {
+        width: 100%;
+        float: none;
+        margin-bottom: 10px;
+    }
+    #responsiveMain {
+        width: 100%;
+        float: none;
+    }
+    .responsive-product {
+        width: 98%;
+        float: none;
+    }
+}
