@@ -57,7 +57,6 @@ function searchBooks() {
     searchTerm = newSearch;
     currentPage = 1;
     searchResults = [];
-    bookAuthors = {};
     $("#searchMessage").html("");
     $("#results").html("<p>Loading books...</p>");
     $("#pageSelection").html("");
@@ -168,6 +167,7 @@ function getBookDetails(workId) {
                 author: bookAuthors[workId] ? bookAuthors[workId].join(", ") : "Author information unavailable.",
                 description: description,
                 subjects: subjects,
+                firstPublishDate: book.first_publish_date || "Not available",
                 cover: book.covers && book.covers.length > 0 ? "https://covers.openlibrary.org/b/id/" + book.covers[0] + "-M.jpg?default=false" : "",
                 bookUrl: "https://openlibrary.org/works/" + bookId
             };
